@@ -16,24 +16,6 @@ store.subscribe(() => {
 
 // state.unsubscribe() -> If needed in the future
 
-store.dispatch(addExpense({
-    description: 'Water Bill',
-    amount: 500,
-    createdAt: 3000
-}));
-
-store.dispatch(addExpense({
-    description: 'Gas Bill',
-    amount: 600,
-    createdAt: 2000
-}));
-
-store.dispatch(addExpense({
-    description: 'Rent',
-    amount: 40700,
-    createdAt: 1000
-}));
-
 const jsx = (
     <Provider store={store}>
         <AppRouter />
