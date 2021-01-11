@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should render the ExpenseDashboard component 1`] = `
+<div>
+  This is expense dashboard
+  <Connect(ExpenseFilters) />
+  <Connect(ExpenseList) />
+</div>
+`;
