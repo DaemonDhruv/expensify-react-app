@@ -1,10 +1,12 @@
 const path = require('path');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 // We can export a function which will return an object
 // We need to specify the build command of webpack in the package.json to call this function and pass the correct argument
 
 module.exports = (env) => {
     const isProduction = env === 'production';
+    const CSSExtract = new ExtractTextPlugin('styles.css'); // styles.css is the name of the file in which we want webpact (ExtractTextPlugin) to dump all the css styles in to be loaded into the index.html at runtime.
 
     return {
         entry: './src/app.js',
@@ -19,14 +21,26 @@ module.exports = (env) => {
                 exclude: /node_modules/
             }, {
                 test: /\.s?css$/,
-                use: [
-                    'style-loader',
-                    'css-loader',
-                    'sass-loader'
-                ]
+                use: CSSExtract.extract({
+                    use: [{
+                        loader: 'css-loader',
+                        options: {
+                            sourceMap: true
+                        }
+                    },
+                    {
+                        loader: 'sass-loader',
+                        options: {
+                            sourceMap: true
+                        }
+                    }]
+                })
             }]
         },
-        devtool: isProduction? 'source-map' : 'cheap-module-eval-source-map',
+        plugins: [
+            CSSExtract
+        ],
+        devtool: isProduction ? 'source-map' : 'inline-source-map',
         devServer: {
             contentBase: path.join(__dirname, 'public'),
             historyApiFallback: true // this will tell the server that we have client side routing and server will always serve index.js
