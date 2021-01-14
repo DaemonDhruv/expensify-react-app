@@ -10,7 +10,7 @@ exports[`should render Expense list if list is empty 1`] = `
 
 exports[`should render Expense list with expenses 1`] = `
 <div>
-  <Connect(ExpenseListItem)
+  <ExpenseListItem
     amount={195}
     count={1}
     createdAt={0}
@@ -19,7 +19,7 @@ exports[`should render Expense list with expenses 1`] = `
     key="1"
     note=""
   />
-  <Connect(ExpenseListItem)
+  <ExpenseListItem
     amount={10900}
     count={2}
     createdAt={-345600000}
@@ -28,7 +28,7 @@ exports[`should render Expense list with expenses 1`] = `
     key="2"
     note=""
   />
-  <Connect(ExpenseListItem)
+  <ExpenseListItem
     amount={4500}
     count={3}
     createdAt={345600000}
