@@ -2,7 +2,7 @@
 
 exports[`should render the ExpenseDashboard component 1`] = `
 <div>
-  This is expense dashboard
+  <Connect(ExpensesSummary) />
   <Connect(ExpenseFilters) />
   <Connect(ExpenseList) />
 </div>
