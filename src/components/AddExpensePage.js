@@ -1,11 +1,11 @@
 import React from 'react';
 import ExpenseForm from './ExpenseForm';
 import { connect } from 'react-redux';
-import { addExpense } from '../actions/expenses';
+import { startAddExpense } from '../actions/expenses';
 
 export class AddExpensePage extends React.Component {
     onSubmit = (expense) => {
-        this.props.addExpense(expense);
+        this.props.startAddExpense(expense);
         // Redirect programatically after successful submit-dispatch to dashboard
         this.props.history.push('/');
     }
@@ -33,7 +33,7 @@ export class AddExpensePage extends React.Component {
 // with proper values or not.
 const matchDispatchToProps = (dispatch) => ({
         // This is going be passed on in the props
-        addExpense: (expense) => dispatch(addExpense(expense))
+        startAddExpense: (expense) => dispatch(startAddExpense(expense))
 });
 
 export default connect(undefined, matchDispatchToProps)(AddExpensePage);

@@ -1,2 +1,5 @@
 node_modules/
 public/dist/
+.heroku_stuff
+.env.development
+.env.test

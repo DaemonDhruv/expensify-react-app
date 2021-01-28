@@ -3,10 +3,10 @@ import ReactDOM from 'react-dom';
 import AppRouter from './routers/AppRouter';
 import { Provider } from 'react-redux';
 import configureStore from './store/configureStore';
-import { addExpense } from './actions/expenses';
 import 'normalize.css/normalize.css';
 import './style/style.scss';
 import 'react-dates/lib/css/_datepicker.css';
+import './firebase/firebase';
 
 const store = configureStore();
 
