@@ -60,3 +60,33 @@ export const editExpense = (id, updates) => ({
     id,
     updates
 });
+
+export const setExpenses = (expenses) => ({
+    type: 'SET_EXPENSES',
+    expenses
+});
+
+export const startSetExpenses = () => {
+    const expenses = [];
+    return (dispatch) => {
+
+        return database.ref('expenses')
+            .once('value')
+            .then((snapshot) => {
+                
+                // Parsing the snapshot
+                snapshot.forEach(childSnapshot => {
+                    expenses.push({
+                        id: childSnapshot.key,
+                        ...childSnapshot.val()
+                    });
+                });
+
+                dispatch(setExpenses(expenses));
+            })
+            .catch((e) => {
+                console.log('Error fetching expenses from DB: ' + e);
+                // Then maybe show this on a modal pop up.
+            })
+    }
+}
