@@ -76,6 +76,23 @@ export const editExpense = (id, updates) => ({
     updates
 });
 
+export const startEditExpense = (id, updates) => {
+
+    return (dispatch) => {
+
+        return database.ref(`expenses/${id}`)
+            .update(updates)
+            .then((ref) => {
+                // Only after successful write to the DB we want to flush same data into our redux store
+                dispatch(editExpense(id, updates))
+            })
+            .catch((e) => {
+                console.log('Error writing addingExpense to DB: ' + e);
+                // Then maybe show this on a modal pop up.
+            })
+    }
+}
+
 export const setExpenses = (expenses) => ({
     type: 'SET_EXPENSES',
     expenses
