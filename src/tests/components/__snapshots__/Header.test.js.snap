@@ -10,7 +10,7 @@ exports[`should render the Header component 1`] = `
       activeClassName="active-nav-link"
       ariaCurrent="true"
       exact={true}
-      to="/"
+      to="/dashboard"
     >
       Dashboard
     </NavLink>
@@ -21,6 +21,11 @@ exports[`should render the Header component 1`] = `
     >
       Add Expences
     </NavLink>
+    <button
+      onClick={[Function]}
+    >
+      Logout
+    </button>
   </header>
 </div>
 `;
