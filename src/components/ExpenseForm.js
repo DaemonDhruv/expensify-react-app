@@ -3,7 +3,6 @@ import moment from 'moment';
 import { SingleDatePicker } from 'react-dates';
 
 const now = moment();
-console.log(now.format());
 
 // passing onSubmit prop is compulsory for this component
 export default class ExpenseForm extends React.Component {
@@ -56,7 +55,6 @@ export default class ExpenseForm extends React.Component {
                 createdAt: this.state.createdAt.valueOf(),
                 note: this.state.note
             });
-            console.log("Submitted!");
         }
     }
     render() {
