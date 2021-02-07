@@ -29,10 +29,11 @@ export const startAddExpense = (expenseData = {}) => {
     const expense = {description, note, amount, createdAt };
 
     // Redux calls this thunk function with a dispatch method
-    return (dispatch) => {
+    return (dispatch, getState) => {
+        const userId = getState().auth.userId;
         // Push to firebase database
         // returning the bellow will allow us do promise chaining for testing purposes
-        return database.ref('expenses')
+        return database.ref(`users/${userId}/expenses`)
             .push(expense)
             .then((ref) => {
                 // Only after successful write to the DB we want to flush same data into our redux store
@@ -57,8 +58,9 @@ export const removeExpense = (id) => ({
 
 export const startRemoveExpense = (id) => {
 
-    return (dispatch) => {
-        return database.ref(`expenses/${id}`)
+    return (dispatch, getState) => {
+        const userId = getState().auth.userId;
+        return database.ref(`users/${userId}/expenses/${id}`)
             .remove()
             .then(() => {
                 dispatch(removeExpense(id));
@@ -78,9 +80,9 @@ export const editExpense = (id, updates) => ({
 
 export const startEditExpense = (id, updates) => {
 
-    return (dispatch) => {
-
-        return database.ref(`expenses/${id}`)
+    return (dispatch, getState) => {
+        const userId = getState().auth.userId;
+        return database.ref(`users/${userId}/expenses/${id}`)
             .update(updates)
             .then((ref) => {
                 // Only after successful write to the DB we want to flush same data into our redux store
@@ -100,9 +102,9 @@ export const setExpenses = (expenses) => ({
 
 export const startSetExpenses = () => {
     const expenses = [];
-    return (dispatch) => {
-
-        return database.ref('expenses')
+    return (dispatch, getState) => {
+        const userId = getState().auth.userId;
+        return database.ref(`users/${userId}/expenses`)
             .once('value')
             .then((snapshot) => {
                 
