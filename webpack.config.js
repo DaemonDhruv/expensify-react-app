@@ -28,7 +28,7 @@ module.exports = (env) => {
     const CSSExtract = new ExtractTextPlugin('styles.css'); // styles.css is the name of the file in which we want webpact (ExtractTextPlugin) to dump all the css styles in to be loaded into the index.html at runtime.
 
     return {
-        entry: './src/app.js',
+        entry: ['babel-polyfill', './src/app.js'],
         output: {
             path: path.join(__dirname, 'public', 'dist'),
             filename: 'bundle.js'

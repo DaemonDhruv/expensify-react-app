@@ -10,11 +10,20 @@ export class AddExpensePage extends React.Component {
         this.props.history.push('/dashboard');
     }
 
+
     render() {
         return (
             <div>
-                Add you expense here
-                <ExpenseForm onSubmit={this.onSubmit} />
+                <div className="page-header">
+                    <div className="content-container">
+                        <h1 className="page-header__title">Add Expense</h1>
+                    </div>
+                </div>
+
+
+                <div className="content-container">
+                    <ExpenseForm onSubmit={this.onSubmit} />
+                </div>
             </div>
         )
     }
@@ -32,8 +41,9 @@ export class AddExpensePage extends React.Component {
 // with the working of onSubmit. Whether it is getting called
 // with proper values or not.
 const matchDispatchToProps = (dispatch) => ({
-        // This is going be passed on in the props
-        startAddExpense: (expense) => dispatch(startAddExpense(expense))
+    // This is going be passed on in the props
+    startAddExpense: (expense) => dispatch(startAddExpense(expense))
 });
+
 
 export default connect(undefined, matchDispatchToProps)(AddExpensePage);
